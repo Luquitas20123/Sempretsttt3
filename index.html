@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exportar Texto para Arquivo</title>
+<style>
+body {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.header {
+background-color: purple;
+color: white;
+width: 100%;
+text-align: center;
+padding: 10px 0;
+margin-bottom: 20px;
+}
+.container {
+margin-bottom: 20px;
+display: none;
+}
+.preview {
+border: 1px solid #ccc;
+padding: 10px;
+width: 100%;
+height: 300px;
+overflow-y: auto;
+background-color: #f9f9f9;
+}
+iframe {
+width: 100%;
+height: 100%;
+border: none;
+}
+.warning {
+color: red;
+}
+</style>
+</head>
+<body>
+<div class="header">tnafp creator v2</div>
+<button id="criarProjetoBtn">Criar Projeto</button>
+<div class="container" id="projectContainer">
+<h1>Escreva algo e baixe como arquivo</h1>
+<textarea id="texto" rows="10" cols="30"><!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+</head>
+<body>
+<script></script>
+</body>
+</html></textarea>
+<p class="warning">Para exportar, baixe a versão para navegador.</p>
+<button id="enviarBtn">Baixar Versão de Navegador</button>
+<button id="previewBtn">Prévia</button>
+</div>
+<div class="preview" id="previewArea">
+<iframe id="previewIframe"></iframe>
+</div>
+<script>
+document.getElementById('criarProjetoBtn').addEventListener('click', function() {
+document.getElementById('projectContainer').style.display = 'block';
+this.style.display = 'none';
+});
+document.getElementById('enviarBtn').addEventListener('click', function() {
+window.open('https://www.mediafire.com/file/ajbfq57uwm6te82/html_to_exporter.html/file');
+});
+document.getElementById('previewBtn').addEventListener('click', function() {
+const content = document.getElementById('texto').value;
+const iframe = document.getElementById('previewIframe');
+const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+iframeDoc.open();
+iframeDoc.write(content);
+iframeDoc.close();
+});
+</script>
+</body>
+</html>
